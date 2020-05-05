@@ -1,3 +1,6 @@
+import math
+
+
 def createHistogram(converted_img):
     gray_level = []
     frequency = []
@@ -180,6 +183,7 @@ def read_pgm(filename, col, row):
 
 
 def list_to_2D_list(lists, list_2D, col, row):
+    print(len(lists))
     for i in range(row):
         inner_list = []
         for j in range(col):
@@ -208,4 +212,28 @@ def fix_miss_pixel(list_img):
     if len(list_img) == 65529:
         for i in range(7):
             list_img.append(0)
+    if len(list_img) == 65535:
+        list_img.append(0)
     return list_img
+
+
+def checkfft(value):
+    if(value <= 0):
+        return 0
+    else:
+        value = math.sqrt(value)
+        if value > 255:
+            return 255
+        else:
+            return value
+
+
+def checkfft2(value):
+    if(value <= 0):
+        return 0
+    else:
+
+        if value > 255:
+            return 255
+        else:
+            return value

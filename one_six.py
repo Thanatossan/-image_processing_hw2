@@ -15,7 +15,7 @@ def check(value):
             return value
 
 
-filename = "./image/Cross.pgm"
+filename = "./image/Lenna.pgm"
 col = 0
 row = 0
 converted_img = []
@@ -23,21 +23,14 @@ mattrix_img = []
 converted_img, col, row = read_pgm(filename, col, row)
 mattrix_img = list_to_2D_list(converted_img, mattrix_img, col, row)
 padded_img = []
-for i in range(256):
-    padded_img_inloop = []
-    for j in range(256):
-        padded_img_inloop.append(0)
-    padded_img.append(padded_img_inloop)
+
+
 for i in range(len(mattrix_img)):
     for j in range(len(mattrix_img[i])):
-        padded_img[28+i][28+j] = mattrix_img[i][j]
-# shift
-for i in range(len(padded_img)):
-    for j in range(len(padded_img[i])):
-        padded_img[i][j] = padded_img[i][j] * pow(-1, i+j)
+        mattrix_img[i][j] = mattrix_img[i][j] * pow(-1, i+j)
 
-fourier_transform = fft2(padded_img)
-copy_img = fft2(padded_img)
+fourier_transform = fft2(mattrix_img)
+copy_img = fft2(mattrix_img)
 copy_img = np.angle(copy_img)
 copy_img = copy_img.tolist()
 fourier_transform = fourier_transform.tolist()
@@ -53,7 +46,7 @@ for i in range(len(fourier_transform)):
         fourier_transform[i][j] = check(value)
 
 
-wirefile = "output1_1_spectrum.pgm"
+wirefile = "output1_6_spectrum.pgm"
 writepgm(wirefile, fourier_transform, 256, 256)
 
 for i in range(len(copy_img)):
@@ -65,7 +58,7 @@ for i in range(len(copy_img)):
             copy_img[i][j] = 255
 # print(copy_img)
 
-wirefile = "output1_1_phase.pgm"
+wirefile = "output1_6_phase.pgm"
 writepgm(wirefile, copy_img, 256, 256)
 
 # for i in range(len(fourier_transform)):
