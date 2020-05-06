@@ -31,6 +31,7 @@ for i in range(256):
 for i in range(len(mattrix_img)):
     for j in range(len(mattrix_img[i])):
         padded_img[28+i][28+j] = mattrix_img[i][j]
+
 # shift
 for i in range(len(padded_img)):
     for j in range(len(padded_img[i])):

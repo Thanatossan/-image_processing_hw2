@@ -144,6 +144,10 @@ def writepgm(filename, mattriximg, col, row):
     filename = "./output_img/"+filename
     for i in range(len(mattriximg)):
         for j in range(len(mattriximg[i])):
+            if mattriximg[i][j] < 0:
+                mattriximg[i][j] = 0
+            elif mattriximg[i][j] > 255:
+                mattriximg[i][j] = 255
             mattriximg[i][j] = chr(int(mattriximg[i][j]))
             string += mattriximg[i][j]
     f = open(filename, "a", encoding="ISO-8859-1")
@@ -183,7 +187,7 @@ def read_pgm(filename, col, row):
 
 
 def list_to_2D_list(lists, list_2D, col, row):
-    print(len(lists))
+    # print(len(lists))
     for i in range(row):
         inner_list = []
         for j in range(col):
